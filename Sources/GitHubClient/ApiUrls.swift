@@ -15,7 +15,10 @@ enum ApiUrl {
   case clientAuthorization(clientId: String)
   case clientAndFingerprintAuthorization(clientId: String, fingerprint: String)
   case clientAuthorizationToken(clientId: String, token: String)
-  
+
+  // Branches
+  case branch(repoOwner: String, repo: String, name: String)
+
   // Invitations
   case invitations(owner: String, repo: String)
   case invitation(owner: String, repo: String, id: Int)
@@ -55,6 +58,7 @@ enum ApiUrl {
     switch self {
     case .authorizations: return ApiUrl.fullPath(from: "authorizations")
     case .authorization(let id): return ApiUrl.fullPath(from: "authorization", id)
+    case let .branch(repoOwner, repoName, branchName): return ApiUrl.fullPath(from: "repos", repoOwner, repoName, "git", "refs", "heads", branchName)
     case .clientAuthorization(let clientId): return ApiUrl.fullPath(from: "authorizations", "clients", clientId)
     case .clientAndFingerprintAuthorization(let clientId, let fingerprint): return ApiUrl.fullPath(from: "authorizations", "clients", clientId, fingerprint)
     case .clientAuthorizationToken(let clientId, let token): return ApiUrl.fullPath(from: "applications", clientId, "tokens", token)
