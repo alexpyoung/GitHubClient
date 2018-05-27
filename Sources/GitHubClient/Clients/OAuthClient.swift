@@ -8,7 +8,6 @@
 
 import RxSwift
 
-@available(OSX 10.12, *)
 public final class OAuthClient: ApiClient {
   
   public func list(limit: Int? = nil) -> Observable<[Authorization]> {

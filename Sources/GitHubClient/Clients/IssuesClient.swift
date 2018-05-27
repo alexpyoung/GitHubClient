@@ -8,7 +8,6 @@
 
 import RxSwift
 
-@available(OSX 10.12, *)
 public final class IssuesClient: ApiClient {
   
   public func listAllAssignedToCurrentUser(filter: Filter? = nil,
@@ -92,7 +91,6 @@ public final class IssuesClient: ApiClient {
   }
 }
 
-@available(OSX 10.12, *)
 public extension IssuesClient {
   
   public enum Filter: String, ApiParameter {

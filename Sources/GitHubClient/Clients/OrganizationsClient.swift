@@ -7,7 +7,6 @@
 
 import RxSwift
 
-@available(OSX 10.12, *)
 final public class OrganizationsClient: ApiClient {
 
   // Mark: Organizations
@@ -59,7 +58,6 @@ final public class OrganizationsClient: ApiClient {
   }
 }
 
-@available(OSX 10.12, *)
 public extension OrganizationsClient {
 
   public enum CollaboratorsFilter: String, ApiParameter {
