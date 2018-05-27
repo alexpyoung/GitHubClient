@@ -22,8 +22,17 @@ public class ApiClient {
     var clientHeaders = ["Accept": "application/vnd.github.v3+json"]
     clientHeaders["Authorization"] = authentication.authorizationHeader
     headers = clientHeaders
-    encoder.dateEncodingStrategy = .iso8601
-    decoder.dateDecodingStrategy = .iso8601
+    if #available(OSX 10.12, *) {
+        encoder.dateEncodingStrategy = .iso8601
+        decoder.dateDecodingStrategy = .iso8601
+    } else {
+        let RFC3339Formatter = DateFormatter()
+        RFC3339Formatter.locale = Locale(identifier: "en_US_POSIX")
+        RFC3339Formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        RFC3339Formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        encoder.dateEncodingStrategy = .formatted(RFC3339Formatter)
+        decoder.dateDecodingStrategy = .formatted(RFC3339Formatter)
+    }
   }
   
   func getObject<T: Decodable>(apiUrl: ApiUrl, parameters: ApiParameter?...) -> Observable<T> {
