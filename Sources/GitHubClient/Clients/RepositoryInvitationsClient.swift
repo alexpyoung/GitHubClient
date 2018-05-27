@@ -8,7 +8,6 @@
 
 import RxSwift
 
-@available(OSX 10.12, *)
 public final class RepositoryInvitationsClient: ApiClient {
   
   public func listAll(owner: String, repo: String, limit: Int? = nil) -> Observable<[Invitation]> {

@@ -9,7 +9,6 @@
 import Foundation
 import RxSwift
 
-@available(OSX 10.12, *)
 public class ApiClient {
   
   let encoder = JSONEncoder()
