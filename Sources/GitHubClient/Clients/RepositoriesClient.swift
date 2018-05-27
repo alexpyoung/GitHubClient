@@ -80,6 +80,10 @@ public final class RepositoriesClient: ApiClient {
   public func delete(owner: String, repo: String) -> Completable {
     return delete(apiUrl: .repository(owner: owner, repo: repo))
   }
+
+  public func delete(owner: String, repo: String, branch: String) -> Completable {
+    return delete(apiUrl: .branch(repoOwner: owner, repo: repo, name: branch))
+  }
 }
 
 @available(OSX 10.12, *)
